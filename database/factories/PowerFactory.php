@@ -11,8 +11,6 @@ class PowerFactory extends Factory
     {
         return [
             'grade' => fake()->randomElement(Grade::cases()),
-            'name' => fake()->word(),
-            'description' => fake()->paragraph(),
         ];
     }
 }
