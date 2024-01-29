@@ -4,10 +4,10 @@ namespace App\Enums;
 
 enum Rating: string
 {
-    case C = 'C';
-    case B = 'B';
-    case A = 'A';
     case S = 'S';
+    case A = 'A';
+    case B = 'B';
+    case C = 'C';
 
     public static function calculate(int $elo): self
     {
