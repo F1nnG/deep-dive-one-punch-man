@@ -16,7 +16,7 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * @property int $id
  * @property string $legal_name
- * @property string $hero_alias
+ * @property string $alias
  * @property string $email
  * @property string $phone
  * @property string $password
@@ -31,7 +31,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Collection|Power[] $powers
  * @property Statistic $statistic
  */
-class Hero extends Authenticatable implements FilamentUser
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
@@ -39,7 +39,7 @@ class Hero extends Authenticatable implements FilamentUser
 
     protected $fillable = [
         'legal_name',
-        'hero_alias',
+        'alias',
         'email',
         'phone',
         'password',

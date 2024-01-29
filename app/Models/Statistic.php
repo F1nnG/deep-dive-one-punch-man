@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\HeroClass;
+use App\Enums\Rating;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 
 /**
  * @property int id
- * @property int hero_id
+ * @property int user_id
  * @property int elo
  * @property int wins
  * @property int losses
@@ -20,16 +20,16 @@ use Illuminate\Support\Carbon;
  * @property Carbon created_at
  * @property Carbon updated_at
  *
- * @property Hero hero
+ * @property User hero
  *
- * @property-read  HeroClass hero_class
+ * @property-read Rating rating
  */
 class Statistic extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'hero_id',
+        'user_id',
         'elo',
         'wins',
         'losses',
@@ -43,15 +43,15 @@ class Statistic extends Model
         'draws' => 0,
     ];
 
-    public function hero(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Hero::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function heroClass(): Attribute
+    public function rating(): Attribute
     {
         return Attribute::make(
-            get: fn () => HeroClass::calculate($this->elo),
+            get: fn () => Rating::calculate($this->elo),
         );
     }
 }

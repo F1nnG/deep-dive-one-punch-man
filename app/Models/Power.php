@@ -10,14 +10,14 @@ use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
- * @property int $hero_id
+ * @property int $user_id
  * @property int $attack_type_id
  * @property Grade $grade
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
- * @property Hero $hero
+ * @property User $user
  * @property AttackType $attackType
  */
 class Power extends Model
@@ -25,7 +25,7 @@ class Power extends Model
     use HasFactory;
 
     protected $fillable = [
-        'hero_id',
+        'user_id',
         'attack_type_id',
         'grade',
     ];
@@ -34,9 +34,9 @@ class Power extends Model
         'grade' => Grade::class,
     ];
 
-    public function hero(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Hero::class);
+        return $this->belongsTo(User::class);
     }
 
     public function attackType(): BelongsTo

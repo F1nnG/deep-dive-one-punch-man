@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Enums\Association;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
-class HeroFactory extends Factory
+class UserFactory extends Factory
 {
     protected static ?string $password;
 
@@ -13,7 +14,8 @@ class HeroFactory extends Factory
     {
         return [
             'legal_name' => fake()->name(),
-            'hero_alias' => fake()->name(),
+            'alias' => fake()->name(),
+            'association' => fake()->randomElement(Association::cases()),
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->phoneNumber(),
             'password' => static::$password ??= Hash::make('password'),

@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum HeroClass: string
+enum Rating: string
 {
     case C = 'C';
     case B = 'B';

@@ -10,7 +10,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AttackTypeSeeder::class,
-            HeroSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

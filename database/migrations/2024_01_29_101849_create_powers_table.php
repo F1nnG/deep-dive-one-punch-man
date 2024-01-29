@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\AttackType;
-use App\Models\Hero;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('powers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Hero::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(AttackType::class)->constrained();
             $table->integer('grade');
             $table->timestamps();
