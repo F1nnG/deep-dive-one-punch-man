@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages\Auth;
 
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Auth\EditProfile as BaseEditProfile;
@@ -12,13 +13,17 @@ class EditProfile extends BaseEditProfile
     {
         return $form
             ->schema([
-                TextInput::make('username')
+                TextInput::make('legal_name')
                     ->required()
-                    ->maxLength(255),
-                $this->getNameFormComponent(),
-                $this->getEmailFormComponent(),
-                $this->getPasswordFormComponent(),
-                $this->getPasswordConfirmationFormComponent(),
+                    ->placeholder('Full Legal Name'),
+                DatePicker::make('date_of_birth')
+                    ->required(),
+                TextInput::make('phone')
+                    ->tel()
+                    ->placeholder('Phone Number'),
+                Register::getComponentsWithPlaceholders($this)
             ]);
     }
 }
+
+// TODO move Register form so it can be used here too

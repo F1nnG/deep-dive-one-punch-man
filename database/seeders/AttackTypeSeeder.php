@@ -9,11 +9,15 @@ class AttackTypeSeeder extends Seeder
 {
     public function run(): void
     {
-        AttackType::factory(15)->create()->each(function ($attackType) {
-            $attackType->update([
-                'effective_against' => fake()->numberBetween(1, 15),
-                'weak_against' => fake()->numberBetween(1, 15),
-            ]);
+        $attackTypes = collect(json_decode(file_get_contents(storage_path('app/attack_types.json')), true));
+
+        $attackIds = $attackTypes->pluck('id')->toArray();
+        if (AttackType::whereIn('id', $attackIds)->exists()) {
+            return;
+        }
+
+        $attackTypes->each(function ($attackType) {
+            AttackType::factory()->create($attackType);
         });
     }
 }
