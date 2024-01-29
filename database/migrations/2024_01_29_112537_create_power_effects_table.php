@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Hero;
+use App\Models\Power;
 use App\Models\SkillType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,13 +12,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('powers', function (Blueprint $table) {
+        Schema::create('power_effects', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Hero::class)->constrained();
             $table->foreignIdFor(SkillType::class)->constrained();
-            $table->integer('grade');
+            $table->foreignIdFor(Power::class)->constrained();
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('effectiveness');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('powers');
+        Schema::dropIfExists('power_effects');
     }
 };

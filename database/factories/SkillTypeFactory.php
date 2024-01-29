@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Enums\Grade;
+use App\Models\SkillType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PowerFactory extends Factory
+class SkillTypeFactory extends Factory
 {
+    protected $model = SkillType::class;
+
     public function definition(): array
     {
         return [
-            'grade' => fake()->randomElement(Grade::cases()),
             'name' => fake()->word(),
-            'description' => fake()->paragraph(),
         ];
     }
 }
