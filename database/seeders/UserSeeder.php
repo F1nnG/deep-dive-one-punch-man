@@ -17,8 +17,10 @@ class UserSeeder extends Seeder
         $users->each(function ($user) {
             $user->powers()->saveMany(
                 Power::factory(3)->make([
-                    'attack_type_id' => fake()->numberBetween(1, 15),
-                ])
+                    'attack_type_id' => 1,
+                ])->each(function ($power) {
+                    $power->attackType()->associate(fake()->numberBetween(1, 30));
+                })
             );
 
             $user->statistic()->save(

@@ -2,8 +2,12 @@
 
 namespace App\Enums;
 
+use App\Enums\Traits\FormatHelper;
+
 enum Rating: string
 {
+    use FormatHelper;
+
     case S = 'S';
     case A = 'A';
     case B = 'B';

@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\Association;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,6 +19,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property int $id
  * @property string $legal_name
  * @property string $alias
+ * @property Association $association
  * @property string $email
  * @property string $phone
  * @property string $password
@@ -32,7 +35,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Statistic $statistic
  * @property Collection|MatchRequest[] $match_requests
  */
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable implements FilamentUser, HasName
 {
     use HasApiTokens;
     use HasFactory;
@@ -41,6 +44,7 @@ class User extends Authenticatable implements FilamentUser
     protected $fillable = [
         'legal_name',
         'alias',
+        'association',
         'email',
         'phone',
         'password',
@@ -56,6 +60,7 @@ class User extends Authenticatable implements FilamentUser
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'association' => Association::class,
     ];
 
     public function powers(): HasMany
@@ -76,5 +81,10 @@ class User extends Authenticatable implements FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
+    }
+
+    public function getFilamentName(): string
+    {
+        return $this->alias;
     }
 }
