@@ -33,8 +33,8 @@ use Laravel\Sanctum\HasApiTokens;
  *
  * @property Collection|Power[] $powers
  * @property Statistic $statistic
- * @property Collection|MatchRequest[] $match_requests
- * @property Collection|Availability[] $availability
+ * @property Collection|BattleRequest[] $battle_requests
+ * @property Collection|Availability[] $availabilities
  */
 class User extends Authenticatable implements FilamentUser, HasName
 {
@@ -74,12 +74,12 @@ class User extends Authenticatable implements FilamentUser, HasName
         return $this->hasOne(Statistic::class);
     }
 
-    public function match_requests(): HasMany
+    public function battleRequests(): HasMany
     {
-        return $this->hasMany(MatchRequest::class);
+        return $this->hasMany(BattleRequest::class);
     }
 
-    public function availability(): HasMany
+    public function availabilities(): HasMany
     {
         return $this->hasMany(Availability::class);
     }

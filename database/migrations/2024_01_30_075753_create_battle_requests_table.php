@@ -11,7 +11,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('match_requests', function (Blueprint $table) {
+        Schema::create('battle_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('match_requests');
+        Schema::dropIfExists('battle_requests');
     }
 };

@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\Association;
 use App\Models\Availability;
-use App\Models\MatchRequest;
+use App\Models\BattleRequest;
 use App\Models\Power;
 use App\Models\Statistic;
 use App\Models\User;
@@ -47,11 +47,11 @@ class UserSeeder extends Seeder
                 Statistic::factory()->make()
             );
 
-            $user->match_requests()->saveMany(
-                MatchRequest::factory(3)->make()
+            $user->battleRequests()->saveMany(
+                BattleRequest::factory(3)->make()
             );
 
-            $user->availability()->saveMany(
+            $user->availabilities()->saveMany(
                 Availability::factory(5)->make()
             );
         });
