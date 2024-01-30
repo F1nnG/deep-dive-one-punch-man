@@ -45,7 +45,7 @@ class Register extends BaseRegister
                             TextInput::make('phone')
                                 ->tel()
                                 ->placeholder('Phone Number'),
-                            ...self::getComponentsWithPlaceholders($this),
+                            ...$this->getComponentsWithPlaceholders(),
                         ]),
                     Step::make('Hero/Monster Information')
                         ->icon('heroicon-o-user-group')
@@ -92,14 +92,14 @@ class Register extends BaseRegister
             ]);
     }
 
-    public static function getComponentsWithPlaceholders(Register|EditProfile $parent): array
+    private function getComponentsWithPlaceholders(): array
     {
         /** @var HasPlaceholder $email */
-        $email = $parent::getEmailFormComponent();
+        $email = parent::getEmailFormComponent();
         /** @var HasPlaceholder $password */
-        $password = $parent::getPasswordFormComponent();
+        $password = parent::getPasswordFormComponent();
         /** @var HasPlaceholder $passwordConfirmation */
-        $passwordConfirmation = $parent::getPasswordConfirmationFormComponent();
+        $passwordConfirmation = parent::getPasswordConfirmationFormComponent();
 
         return [
             $email->placeholder('Email Address'),
