@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Pages\Auth\EditProfile;
 use App\Filament\Pages\Auth\Register;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -29,7 +28,6 @@ class AssociationPanelProvider extends PanelProvider
             ->path('association')
             ->login()
             ->registration(Register::class)
-            ->profile(EditProfile::class)
             ->colors([
                 'primary' => Color::Purple,
             ])
