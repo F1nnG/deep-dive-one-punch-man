@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\MatchRequest;
 use App\Models\Power;
 use App\Models\Statistic;
 use App\Models\User;
@@ -22,6 +23,10 @@ class UserSeeder extends Seeder
 
             $user->statistic()->save(
                 Statistic::factory()->make()
+            );
+
+            $user->match_requests()->saveMany(
+                MatchRequest::factory(3)->make()
             );
         });
     }
