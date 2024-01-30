@@ -30,6 +30,7 @@ use Laravel\Sanctum\HasApiTokens;
  *
  * @property Collection|Power[] $powers
  * @property Statistic $statistic
+ * @property Collection|MatchRequest[] $match_requests
  */
 class User extends Authenticatable implements FilamentUser
 {
@@ -65,6 +66,11 @@ class User extends Authenticatable implements FilamentUser
     public function statistic(): HasOne
     {
         return $this->hasOne(Statistic::class);
+    }
+
+    public function match_requests(): HasMany
+    {
+        return $this->hasMany(MatchRequest::class);
     }
 
     public function canAccessPanel(Panel $panel): bool
