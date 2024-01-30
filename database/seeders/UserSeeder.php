@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\Association;
+use App\Models\Availability;
 use App\Models\MatchRequest;
 use App\Models\Power;
 use App\Models\Statistic;
@@ -29,7 +30,9 @@ class UserSeeder extends Seeder
             'association' => Association::Monster,
         ]);
 
-        $users = User::factory(10)->create();
+        User::factory(10)->create();
+
+        $users = User::all();
 
         $users->each(function ($user) {
             $user->powers()->saveMany(
@@ -46,6 +49,10 @@ class UserSeeder extends Seeder
 
             $user->match_requests()->saveMany(
                 MatchRequest::factory(3)->make()
+            );
+
+            $user->availability()->saveMany(
+                Availability::factory(5)->make()
             );
         });
     }
