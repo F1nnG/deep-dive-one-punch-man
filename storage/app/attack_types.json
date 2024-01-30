@@ -1,0 +1,242 @@
+[
+    {
+        "id": 1,
+        "name": "Superhuman Strength",
+        "description": "Attacks that demonstrate extraordinary physical power, often resulting in massive destruction.",
+        "damage": 18,
+        "effective_against": 14,
+        "weak_against": 10
+    },
+    {
+        "id": 2,
+        "name": "Rapid-Fire Strikes",
+        "description": "Fast, consecutive punches or kicks, overwhelming foes with speed and frequency.",
+        "damage": 16,
+        "effective_against": 21,
+        "weak_against": 1
+    },
+    {
+        "id": 3,
+        "name": "Energy Projection",
+        "description": "The ability to emit powerful blasts of energy, capable of long-range attacks.",
+        "damage": 17,
+        "effective_against": 22,
+        "weak_against": 5
+    },
+    {
+        "id": 4,
+        "name": "Supernatural Speed",
+        "description": "Attacks delivered with incredible velocity, often leaving the opponent no time to react.",
+        "damage": 15,
+        "effective_against": 2,
+        "weak_against": 3
+    },
+    {
+        "id": 5,
+        "name": "Explosive Impact",
+        "description": "Attacks focused on delivering a large amount of force in a single, devastating blow.",
+        "damage": 19,
+        "effective_against": 1,
+        "weak_against": 6
+    },
+    {
+        "id": 6,
+        "name": "Martial Arts Techniques",
+        "description": "Skillful hand-to-hand combat moves, employing technique and precision over raw power.",
+        "damage": 14,
+        "effective_against": 4,
+        "weak_against": 7
+    },
+    {
+        "id": 7,
+        "name": "Weapon Mastery",
+        "description": "Utilizing weapons such as swords or firearms with exceptional skill and accuracy.",
+        "damage": 13,
+        "effective_against": 6,
+        "weak_against": 3
+    },
+    {
+        "id": 8,
+        "name": "Sonic/Sound Waves",
+        "description": "Harnessing sound or sonic waves to attack, potentially disorienting or damaging through vibration.",
+        "damage": 12,
+        "effective_against": 7,
+        "weak_against": 9
+    },
+    {
+        "id": 9,
+        "name": "Elemental Manipulation",
+        "description": "Control over elements like fire, ice, or wind, using them to create varied attack forms.",
+        "damage": 17,
+        "effective_against": 8,
+        "weak_against": 4
+    },
+    {
+        "id": 10,
+        "name": "Psychokinetic Powers",
+        "description": "Utilizing telekinesis or psychic energy to attack, capable of manipulating objects or opponents.",
+        "damage": 15,
+        "effective_against": 5,
+        "weak_against": 1
+    },
+    {
+        "id": 11,
+        "name": "Transformational Abilities",
+        "description": "Changing form to enhance physical or elemental abilities, often increasing attack power.",
+        "damage": 16,
+        "effective_against": 10,
+        "weak_against": 12
+    },
+    {
+        "id": 12,
+        "name": "Regenerative Skills",
+        "description": "Rapid healing capabilities that can quickly recover from attacks, providing sustained combat endurance.",
+        "damage": 8,
+        "effective_against": 11,
+        "weak_against": 13
+    },
+    {
+        "id": 13,
+        "name": "Acrobatic Combat",
+        "description": "Using agility and acrobatics to evade attacks and counter with precision.",
+        "damage": 11,
+        "effective_against": 12,
+        "weak_against": 14
+    },
+    {
+        "id": 14,
+        "name": "Brute Force",
+        "description": "Reliance on overwhelming power and physical might to crush opponents, often lacking finesse.",
+        "damage": 20,
+        "effective_against": 13,
+        "weak_against": 15
+    },
+    {
+        "id": 15,
+        "name": "Energy Absorption",
+        "description": "The ability to absorb energy from attacks or the environment, using it for counterattacks or power boosts.",
+        "damage": 10,
+        "effective_against": 14,
+        "weak_against": 16
+    },
+    {
+        "id": 16,
+        "name": "Size Manipulation",
+        "description": "Altering physical size to gain advantage in power or evasion, making the user harder to hit or stronger.",
+        "damage": 12,
+        "effective_against": 15,
+        "weak_against": 17
+    },
+    {
+        "id": 17,
+        "name": "Aerial Assaults",
+        "description": "Launching attacks from or through the air, often taking advantage of height or mobility.",
+        "damage": 13,
+        "effective_against": 16,
+        "weak_against": 18
+    },
+    {
+        "id": 18,
+        "name": "Stealth Attacks",
+        "description": "Using stealth or surprise to attack, often catching the opponent off guard for a critical hit.",
+        "damage": 14,
+        "effective_against": 17,
+        "weak_against": 19
+    },
+    {
+        "id": 19,
+        "name": "Animalistic Traits",
+        "description": "Emulating animal abilities or behaviors in combat, utilizing instincts and natural weaponry.",
+        "damage": 11,
+        "effective_against": 18,
+        "weak_against": 20
+    },
+    {
+        "id": 20,
+        "name": "Technological Enhancements",
+        "description": "Using advanced technology or machinery to augment attacks, increasing power or versatility.",
+        "damage": 15,
+        "effective_against": 19,
+        "weak_against": 21
+    },
+    {
+        "id": 21,
+        "name": "Defensive Techniques",
+        "description": "Focusing on defense, using blocks, parries, or barriers to protect and counter.",
+        "damage": 9,
+        "effective_against": 20,
+        "weak_against": 22
+    },
+    {
+        "id": 22,
+        "name": "Poisonous Attacks",
+        "description": "Utilizing toxins or venoms to weaken or incapacitate opponents over time.",
+        "damage": 10,
+        "effective_against": 21,
+        "weak_against": 23
+    },
+    {
+        "id": 23,
+        "name": "Illusionary Tricks",
+        "description": "Creating illusions to deceive, disorient, or distract opponents, often leading to a surprise attack.",
+        "damage": 7,
+        "effective_against": 22,
+        "weak_against": 24
+    },
+    {
+        "id": 24,
+        "name": "Gravity Control",
+        "description": "Manipulating gravity for offensive use, can immobilize opponents or enhance the impact of attacks.",
+        "damage": 13,
+        "effective_against": 23,
+        "weak_against": 25
+    },
+    {
+        "id": 25,
+        "name": "Biological Warfare",
+        "description": "Attacks using biological processes, such as spores, viruses, or other natural hazards.",
+        "damage": 12,
+        "effective_against": 24,
+        "weak_against": 26
+    },
+    {
+        "id": 26,
+        "name": "Seismic Powers",
+        "description": "Harnessing the power of the earth, causing quakes or manipulating the terrain for attacks.",
+        "damage": 14,
+        "effective_against": 25,
+        "weak_against": 27
+    },
+    {
+        "id": 27,
+        "name": "Cyber Warfare",
+        "description": "Using digital means for attack, like hacking or cybernetic interference, effective against technology-based foes.",
+        "damage": 10,
+        "effective_against": 26,
+        "weak_against": 28
+    },
+    {
+        "id": 28,
+        "name": "Mystical Forces",
+        "description": "Utilizing arcane or mystical energies for attacks, often with unpredictable effects.",
+        "damage": 16,
+        "effective_against": 27,
+        "weak_against": 29
+    },
+    {
+        "id": 29,
+        "name": "Vampiric Powers",
+        "description": "Draining energy or health from opponents to weaken them and strengthen the user.",
+        "damage": 11,
+        "effective_against": 28,
+        "weak_against": 30
+    },
+    {
+        "id": 30,
+        "name": "Cosmic Powers",
+        "description": "Attacks involving cosmic or space-related forces, often with grand and far-reaching effects.",
+        "damage": 18,
+        "effective_against": 29,
+        "weak_against": 1
+    }
+]
