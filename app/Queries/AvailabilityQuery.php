@@ -16,6 +16,7 @@ class AvailabilityQuery extends Builder
     {
         return Availability::whereUserAssociationNot($user->association)
             ->whereNot('user_id', $user->id)
+            ->whereUserCompletedProbation()
             ->whereUserHasRequest()
             ->whereUserHasRating($user->statistic->rating)
             ->whereHasDateIn($dates)
@@ -27,6 +28,13 @@ class AvailabilityQuery extends Builder
         return Availability::fromUser($user)
             ->whereHasDate($date)
             ->first();
+    }
+
+    public function whereUserCompletedProbation(): self
+    {
+        return $this->whereHas('user', function (Builder $query) {
+            $query->where('created_at', '>=', now()->subDays(30));
+        });
     }
 
     public function whereUserAssociationNot(Association $association): self
