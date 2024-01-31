@@ -51,24 +51,4 @@ enum Rating: string
             self::S => Color::Yellow,
         };
     }
-
-    public function min(): int
-    {
-        return match ($this) {
-            self::S => 1400,
-            self::A => 1200,
-            self::B => 1000,
-            self::C => 0,
-        };
-    }
-
-    public function max(): int
-    {
-        return match ($this) {
-            self::S => 99999,
-            self::A => 1399,
-            self::B => 1199,
-            self::C => 999,
-        };
-    }
 }

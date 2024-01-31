@@ -55,7 +55,7 @@ class AvailabilityQuery extends Builder
     {
         return $this->whereHas('user', function (Builder $user) use ($rating) {
             $user->whereHas('statistic', function (Builder $statistic) use ($rating) {
-                $statistic->whereBetween('elo', [$rating->min(), $rating->max()]);
+                $statistic->whereBetween('elo', $rating->eloBetween());
             });
         });
     }
