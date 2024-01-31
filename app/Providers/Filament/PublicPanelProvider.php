@@ -25,6 +25,7 @@ class PublicPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->viteTheme('resources/css/filament/public/theme.css')
             ->id('public')
             ->path('')
             ->colors([
@@ -64,7 +65,7 @@ class PublicPanelProvider extends PanelProvider
                 ->url(fn () => Auth::check() ? route('filament.association.resources.profiles.edit', Auth::user()->id) : route('filament.association.auth.login')),
             NavigationItem::make('Availabilities')
                 ->group('User')
-                ->hidden(fn () => ! Auth::check())
+                ->hidden(fn () => !Auth::check())
                 ->icon('heroicon-o-calendar')
                 ->url(fn () => route('filament.association.resources.availabilities.index')),
         ];
