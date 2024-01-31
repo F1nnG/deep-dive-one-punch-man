@@ -49,9 +49,6 @@ class PublicPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-            ])
-            ->authMiddleware([
-                //
             ]);
     }
 
@@ -67,6 +64,11 @@ class PublicPanelProvider extends PanelProvider
                 ->visible(fn () => Auth::check())
                 ->icon('heroicon-o-calendar')
                 ->url(fn () => route('filament.association.resources.availabilities.index')),
+            NavigationItem::make('Attack Types')
+                ->group('Admin')
+                ->visible(fn () => Auth::check() && Auth::user()->is_admin)
+                ->icon('heroicon-o-bolt')
+                ->url(fn () => route('filament.association.resources.attack-types.index')),
             NavigationItem::make('Api Keys')
                 ->group('Admin')
                 ->visible(fn () => Auth::check() && Auth::user()->is_admin)

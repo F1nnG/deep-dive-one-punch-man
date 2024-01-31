@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
 
 /**
@@ -42,13 +42,13 @@ class AttackType extends Model
         return $this->hasMany(Power::class);
     }
 
-    public function effectiveAgainst(): BelongsTo
+    public function effectiveAgainst(): HasOne
     {
-        return $this->belongsTo(AttackType::class, 'id', 'effective_against');
+        return $this->hasOne(AttackType::class, 'id', 'effective_against');
     }
 
-    public function weakAgainst(): BelongsTo
+    public function weakAgainst(): HasOne
     {
-        return $this->belongsTo(AttackType::class, 'id', 'weak_against');
+        return $this->hasOne(AttackType::class, 'id', 'weak_against');
     }
 }
