@@ -25,7 +25,7 @@ class AvailabilityQuery extends Builder
 
     public function getFromUserWithDate(User $user, Carbon $date): ?Availability
     {
-        return Availability::fromUser($user)
+        return Availability::whereUserId($user->id)
             ->whereHasDate($date)
             ->first();
     }
@@ -78,10 +78,5 @@ class AvailabilityQuery extends Builder
             $query->where('start_date', '<=', $date)
                 ->where('end_date', '>=', $date);
         });
-    }
-
-    public function fromUser(User $user): self
-    {
-        return $this->where('user_id', $user->id);
     }
 }
