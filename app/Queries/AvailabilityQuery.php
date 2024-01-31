@@ -15,6 +15,7 @@ class AvailabilityQuery extends Builder
     {
         return Availability::whereUserAssociationNot($user->association)
             ->whereNot('user_id', $user->id)
+            ->whereUserHasRequest()
             ->whereHasDateIn($dates)
             ->first();
     }
@@ -30,6 +31,13 @@ class AvailabilityQuery extends Builder
     {
         return $this->whereHas('user', function (Builder $query) use ($association) {
             $query->whereNot('association', $association);
+        });
+    }
+
+    public function whereUserHasRequest(): self
+    {
+        return $this->whereHas('user', function (Builder $query) {
+            $query->whereHas('battleRequests');
         });
     }
 
