@@ -65,6 +65,7 @@ class EditProfile extends EditRecord
                             ->required(),
                         Textarea::make('backstory')
                             ->required()
+                            ->rules(['max:300'])
                             ->placeholder('Tell us about yourself...'),
                     ]),
                 Repeater::make('powers')

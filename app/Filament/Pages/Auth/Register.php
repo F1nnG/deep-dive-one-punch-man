@@ -53,6 +53,7 @@ class Register extends BaseRegister
                                 ->required(),
                             Textarea::make('backstory')
                                 ->required()
+                                ->rules(['max:300'])
                                 ->placeholder('Tell us about yourself...'),
                         ]),
                     Step::make('Powers')

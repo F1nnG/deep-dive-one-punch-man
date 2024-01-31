@@ -7,6 +7,7 @@ use App\Filament\Resources\AvailabilityResource\Pages\EditAvailability;
 use App\Filament\Resources\AvailabilityResource\Pages\ListAvailabilities;
 use App\Models\Availability;
 use App\Queries\AvailabilityQuery;
+use App\Rules\OverlappingDates;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -29,8 +30,10 @@ class AvailabilityResource extends Resource
     {
         return $form
             ->schema([
-                DatePicker::make('start_date'),
-                DatePicker::make('end_date'),
+                DatePicker::make('start_date')
+                    ->rules([new OverlappingDates()]),
+                DatePicker::make('end_date')
+                    ->rules([new OverlappingDates()]),
             ]);
     }
 
