@@ -4,6 +4,7 @@ namespace App\Filament\Pages\Auth;
 
 use App\Enums\Association;
 use App\Models\User;
+use App\Rules\WordCount;
 use Filament\Forms\Components\Concerns\HasPlaceholder;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Placeholder;
@@ -53,7 +54,8 @@ class Register extends BaseRegister
                                 ->required(),
                             Textarea::make('backstory')
                                 ->required()
-                                ->rules(['max:300'])
+                                ->autosize()
+                                ->rules([new WordCount()])
                                 ->placeholder('Tell us about yourself...'),
                         ]),
                     Step::make('Powers')

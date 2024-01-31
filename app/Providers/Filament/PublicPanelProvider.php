@@ -59,8 +59,14 @@ class PublicPanelProvider extends PanelProvider
     {
         return [
             NavigationItem::make(fn () => Auth::check() ? 'Profile' : 'Login')
+                ->group('User')
                 ->icon(fn () => Auth::check() ? 'heroicon-o-user' : 'heroicon-o-arrow-right-end-on-rectangle')
                 ->url(fn () => Auth::check() ? route('filament.association.resources.profiles.edit', Auth::user()->id) : route('filament.association.auth.login')),
+            NavigationItem::make('Availabilities')
+                ->group('User')
+                ->hidden(fn () => ! Auth::check())
+                ->icon('heroicon-o-calendar')
+                ->url(fn () => route('filament.association.resources.availabilities.index')),
         ];
     }
 }
