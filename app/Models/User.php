@@ -84,6 +84,11 @@ class User extends Authenticatable implements FilamentUser, HasName
         return $this->hasMany(Availability::class);
     }
 
+    public function apiKeys(): HasMany
+    {
+        return $this->hasMany(ApiKey::class);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return true;

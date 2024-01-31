@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ApiKey;
 use App\Models\Availability;
 use App\Models\BattleRequest;
 use App\Models\Power;
@@ -39,6 +40,10 @@ class UserSeeder extends Seeder
 
             $user->availabilities()->saveMany(
                 Availability::factory(1)->make()
+            );
+
+            $user->apiKeys()->saveMany(
+                ApiKey::factory(2)->make()
             );
         });
     }
