@@ -79,7 +79,12 @@ class EditProfile extends EditRecord
                                     ->required()
                                     ->autosize()
                                     ->rules([new WordCount()])
-                                    ->placeholder('Tell us about yourself...'),
+                                    ->placeholder('Tell us about yourself and how you came to be...'),
+                                Textarea::make('motivation')
+                                    ->required()
+                                    ->autosize()
+                                    ->rules([new WordCount()])
+                                    ->placeholder('Tell us why you want to join...'),
                             ]),
                         Tab::make('Powers')
                             ->schema([
