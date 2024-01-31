@@ -7,6 +7,7 @@ use App\Enums\Grade;
 use App\Filament\Resources\ProfileResource;
 use App\Filament\vendor\Select as AlternativeSelect;
 use App\Models\AttackType;
+use App\Rules\WordCount;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Repeater;
@@ -65,6 +66,8 @@ class EditProfile extends EditRecord
                             ->required(),
                         Textarea::make('backstory')
                             ->required()
+                            ->autosize()
+                            ->rules([new WordCount()])
                             ->placeholder('Tell us about yourself...'),
                     ]),
                 Repeater::make('powers')

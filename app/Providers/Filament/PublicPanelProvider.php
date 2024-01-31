@@ -38,11 +38,7 @@ class PublicPanelProvider extends PanelProvider
             ->widgets([
                 StatisticsWidget::make(),
             ])
-            ->navigationItems([
-                NavigationItem::make('Profile')
-                    ->icon('heroicon-o-user')
-                    ->url(fn () => Auth::check() ? route('filament.association.resources.profiles.edit', Auth::user()->id) : route('filament.association.auth.login')),
-            ])
+            ->navigationItems(self::getNavigationItems())
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -57,5 +53,20 @@ class PublicPanelProvider extends PanelProvider
             ->authMiddleware([
                 //
             ]);
+    }
+
+    private static function getNavigationItems(): array
+    {
+        return [
+            NavigationItem::make(fn () => Auth::check() ? 'Profile' : 'Login')
+                ->group('User')
+                ->icon(fn () => Auth::check() ? 'heroicon-o-user' : 'heroicon-o-arrow-right-end-on-rectangle')
+                ->url(fn () => Auth::check() ? route('filament.association.resources.profiles.edit', Auth::user()->id) : route('filament.association.auth.login')),
+            NavigationItem::make('Availabilities')
+                ->group('User')
+                ->hidden(fn () => ! Auth::check())
+                ->icon('heroicon-o-calendar')
+                ->url(fn () => route('filament.association.resources.availabilities.index')),
+        ];
     }
 }
