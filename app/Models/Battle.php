@@ -15,6 +15,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon $date
  * @property Carbon $finished_at
  * @property int $winner_id
+ * @property array $logs
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -36,11 +37,13 @@ class Battle extends Model
         'date',
         'finished_at',
         'winner_id',
+        'logs',
     ];
 
     protected $casts = [
         'date' => 'date',
         'finished_at' => 'datetime',
+        'logs' => 'array',
     ];
 
     public function hero(): BelongsTo

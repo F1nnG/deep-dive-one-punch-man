@@ -17,7 +17,7 @@ class FinishBattles implements ShouldQueue
     public function handle(): void
     {
         $battles = Battle::whereNull('finished_at')
-            ->whereDate('date', '<', now()->addDays(50))
+            ->whereDate('date', '<', now())
             ->get();
 
         $battles->each(function (Battle $battle) {
