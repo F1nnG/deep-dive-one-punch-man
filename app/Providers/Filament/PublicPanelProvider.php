@@ -64,9 +64,19 @@ class PublicPanelProvider extends PanelProvider
                 ->url(fn () => Auth::check() ? route('filament.association.resources.profiles.edit', Auth::user()->id) : route('filament.association.auth.login')),
             NavigationItem::make('Availabilities')
                 ->group('User')
-                ->hidden(fn () => ! Auth::check())
+                ->visible(fn () => Auth::check())
                 ->icon('heroicon-o-calendar')
                 ->url(fn () => route('filament.association.resources.availabilities.index')),
+            NavigationItem::make('Api Key')
+                ->group('User')
+                ->visible(fn () => Auth::check())
+                ->icon('heroicon-o-code-bracket')
+                ->url(fn () => route('filament.association.resources.api-keys.create')),
+            NavigationItem::make('Api Keys')
+                ->group('Admin')
+                ->visible(fn () => Auth::check() && Auth::user()->is_admin)
+                ->icon('heroicon-o-key')
+                ->url(fn () => route('filament.association.resources.api-keys.index')),
         ];
     }
 }

@@ -16,6 +16,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AssociationPanelProvider extends PanelProvider
@@ -36,6 +37,12 @@ class AssociationPanelProvider extends PanelProvider
                 NavigationItem::make('Leaderboard')
                     ->icon('heroicon-o-trophy')
                     ->url('/'),
+                NavigationItem::make('Api Key')
+                    ->visible(fn () => Auth::check())
+                    ->isActiveWhen(fn () => request()->routeIs('filament.association.resources.api-keys.create'))
+                    ->group('User')
+                    ->icon('heroicon-o-code-bracket')
+                    ->url(fn () => route('filament.association.resources.api-keys.create')),
             ])
             ->middleware([
                 EncryptCookies::class,

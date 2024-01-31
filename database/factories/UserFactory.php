@@ -39,6 +39,7 @@ class UserFactory extends Factory
             'email' => 'hero@hero.com',
             'password' => 'hero',
             'association' => Association::Hero,
+            'is_admin' => true,
         ]);
     }
 
@@ -54,6 +55,7 @@ class UserFactory extends Factory
             'email' => 'monster@monster.com',
             'password' => 'monster',
             'association' => Association::Monster,
+            'is_admin' => true,
         ]);
     }
 }

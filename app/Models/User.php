@@ -27,6 +27,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $backstory
  * @property Carbon $email_verified_at
  * @property string $remember_token
+ * @property bool $is_admin
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -51,6 +52,7 @@ class User extends Authenticatable implements FilamentUser, HasName
         'password',
         'date_of_birth',
         'backstory',
+        'is_admin',
     ];
 
     protected $hidden = [
