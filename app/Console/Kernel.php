@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\FinishBattles;
 use App\Jobs\PlanBattles;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -14,6 +15,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->job(new PlanBattles)->hourly();
+
+        $schedule->job(new FinishBattles)->daily();
     }
 
     /**
