@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->date('date');
             $table->dateTime('finished_at')->nullable();
             $table->foreignIdFor(User::class, 'winner_id')->nullable()->constrained('users');
+            $table->json('logs')->nullable();
             $table->timestamps();
         });
     }
