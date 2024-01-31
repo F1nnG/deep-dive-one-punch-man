@@ -14,6 +14,8 @@ class ProfileResource extends Resource
 
     protected static ?string $navigationLabel = 'Profile';
 
+    protected static ?string $navigationGroup = 'User';
+
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function getNavigationUrl(): string
