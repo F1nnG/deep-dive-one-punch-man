@@ -3,6 +3,7 @@
 namespace App\Queries;
 
 use App\Enums\Association;
+use App\Enums\Rating;
 use App\Models\Availability;
 use App\Models\User;
 use Carbon\Carbon;
@@ -16,6 +17,7 @@ class AvailabilityQuery extends Builder
         return Availability::whereUserAssociationNot($user->association)
             ->whereNot('user_id', $user->id)
             ->whereUserHasRequest()
+            ->whereUserHasRating($user->statistic->rating)
             ->whereHasDateIn($dates)
             ->first();
     }
@@ -38,6 +40,15 @@ class AvailabilityQuery extends Builder
     {
         return $this->whereHas('user', function (Builder $query) {
             $query->whereHas('battleRequests');
+        });
+    }
+
+    public function whereUserHasRating(Rating $rating): self
+    {
+        return $this->whereHas('user', function (Builder $user) use ($rating) {
+            $user->whereHas('statistic', function (Builder $statistic) use ($rating) {
+                $statistic->whereBetween('elo', [$rating->min(), $rating->max()]);
+            });
         });
     }
 
