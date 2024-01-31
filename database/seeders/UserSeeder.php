@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Enums\Association;
 use App\Models\Availability;
 use App\Models\BattleRequest;
 use App\Models\Power;
@@ -14,21 +13,8 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory()->create([
-            'legal_name' => 'Hero Hero',
-            'alias' => 'Hero',
-            'email' => 'hero@hero.com',
-            'password' => 'hero',
-            'association' => Association::Hero,
-        ]);
-
-        User::factory()->create([
-            'legal_name' => 'Monster Monster',
-            'alias' => 'Monster',
-            'email' => 'monster@monster.com',
-            'password' => 'monster',
-            'association' => Association::Monster,
-        ]);
+        User::factory()->asHero()->create();
+        User::factory()->asMonster()->create();
 
         User::factory(10)->create();
 
