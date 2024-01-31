@@ -2,8 +2,8 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Pages\Auth\Register;
-use Filament\Http\Middleware\Authenticate;
+use App\Filament\Pages\Dashboard;
+use App\Filament\Widgets\StatisticsWidget;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationItem;
@@ -16,26 +16,32 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class AssociationPanelProvider extends PanelProvider
+class PublicPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id('association')
-            ->path('association')
-            ->login()
-            ->registration(Register::class)
+            ->default()
+            ->id('public')
+            ->path('')
             ->colors([
                 'primary' => Color::Amber,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverResources(in: app_path('Filament/Public/Resources'), for: 'App\\Filament\\Public\\Resources')
+            ->discoverPages(in: app_path('Filament/Public/Pages'), for: 'App\\Filament\\Public\\Pages')
+            ->pages([
+                Dashboard::class,
+            ])
+            ->widgets([
+                StatisticsWidget::make(),
+            ])
             ->navigationItems([
-                NavigationItem::make('Leaderboard')
-                    ->icon('heroicon-o-trophy')
-                    ->url('/'),
+                NavigationItem::make('Profile')
+                    ->icon('heroicon-o-user')
+                    ->url(fn () => Auth::check() ? route('filament.association.resources.profiles.edit', Auth::user()->id) : route('filament.association.auth.login')),
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -49,7 +55,7 @@ class AssociationPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
-                Authenticate::class,
+                //
             ]);
     }
 }
