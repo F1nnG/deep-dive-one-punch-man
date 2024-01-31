@@ -17,19 +17,19 @@ enum Rating: string
     public function eloBetween(): array
     {
         return match ($this) {
-            self::C => [0, 2400],
-            self::B => [2400, 4800],
-            self::A => [4800, 7200],
-            self::S => [7200, PHP_INT_MAX],
+            self::C => [0, 1400],
+            self::B => [1400, 1800],
+            self::A => [1800, 2400],
+            self::S => [2400, PHP_INT_MAX],
         };
     }
 
     public static function calculate(int $elo): self
     {
         return match (true) {
-            $elo < 2400 => self::C,
-            $elo < 4800 => self::B,
-            $elo < 7200 => self::A,
+            $elo < 1400 => self::C,
+            $elo < 1800 => self::B,
+            $elo < 2400 => self::A,
             default => self::S,
         };
     }

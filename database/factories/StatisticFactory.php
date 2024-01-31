@@ -12,7 +12,7 @@ class StatisticFactory extends Factory
     public function definition(): array
     {
         return [
-            'elo' => fake()->numberBetween(1000, 8000),
+            'elo' => fake()->numberBetween(1000, 2500),
             'wins' => fake()->numberBetween(5, 25),
             'losses' => fake()->numberBetween(5, 25),
             'draws' => fake()->numberBetween(5, 25),
