@@ -8,6 +8,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget;
+use Illuminate\Database\Eloquent\Builder;
 
 class StatisticsWidget extends TableWidget
 {
@@ -55,7 +56,7 @@ class StatisticsWidget extends TableWidget
 
                         collect($data)
                             ->map(fn ($rating) => Rating::from($rating))
-                            ->each(fn ($class) => $query
+                            ->each(fn (Builder|Rating $class) => $query
                                 ->orWhere('elo', '>=', $class->eloBetween()[0])
                                 ->where('elo', '<', $class->eloBetween()[1])
                             );

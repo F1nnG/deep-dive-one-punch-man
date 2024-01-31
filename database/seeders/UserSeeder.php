@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\MatchRequest;
+use App\Models\Availability;
+use App\Models\BattleRequest;
 use App\Models\Power;
 use App\Models\Statistic;
 use App\Models\User;
@@ -15,7 +16,9 @@ class UserSeeder extends Seeder
         User::factory()->asHero()->create();
         User::factory()->asMonster()->create();
 
-        $users = User::factory(10)->create();
+        User::factory(10)->create();
+
+        $users = User::all();
 
         $users->each(function ($user) {
             $user->powers()->saveMany(
@@ -30,8 +33,12 @@ class UserSeeder extends Seeder
                 Statistic::factory()->make()
             );
 
-            $user->match_requests()->saveMany(
-                MatchRequest::factory(3)->make()
+            $user->battleRequests()->saveMany(
+                BattleRequest::factory(3)->make()
+            );
+
+            $user->availabilities()->saveMany(
+                Availability::factory(1)->make()
             );
         });
     }

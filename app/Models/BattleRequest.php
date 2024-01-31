@@ -16,7 +16,7 @@ use Illuminate\Support\Carbon;
  *
  * @property User $user
  */
-class MatchRequest extends Model
+class BattleRequest extends Model
 {
     use HasFactory;
 

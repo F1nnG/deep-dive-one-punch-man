@@ -11,9 +11,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('match_requests', function (Blueprint $table) {
+        Schema::create('availabilities', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('match_requests');
+        Schema::dropIfExists('availabilities');
     }
 };

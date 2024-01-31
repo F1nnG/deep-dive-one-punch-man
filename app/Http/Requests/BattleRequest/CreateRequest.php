@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\MatchRequest;
+namespace App\Http\Requests\BattleRequest;
 
 use App\Http\Requests\FormRequest;
 

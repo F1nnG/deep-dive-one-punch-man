@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\MatchRequestController;
+use App\Http\Controllers\Api\BattleRequestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/request-match', [MatchRequestController::class, 'create'])
-    ->name('match-request.create');
+Route::get('/request-battle', [BattleRequestController::class, 'create'])
+    ->name('battle-request.create');

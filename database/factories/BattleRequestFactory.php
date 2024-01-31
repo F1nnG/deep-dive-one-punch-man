@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class MatchRequestFactory extends Factory
+class BattleRequestFactory extends Factory
 {
     public function definition(): array
     {
