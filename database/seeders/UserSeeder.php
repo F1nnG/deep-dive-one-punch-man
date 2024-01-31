@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
             );
 
             $user->availabilities()->saveMany(
-                Availability::factory(5)->make()
+                Availability::factory(1)->make()
             );
         });
     }

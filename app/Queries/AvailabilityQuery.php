@@ -19,6 +19,13 @@ class AvailabilityQuery extends Builder
             ->first();
     }
 
+    public function getFromUserWithDate(User $user, Carbon $date): ?Availability
+    {
+        return Availability::fromUser($user)
+            ->whereHasDate($date)
+            ->first();
+    }
+
     public function whereUserAssociationNot(Association $association): self
     {
         return $this->whereHas('user', function (Builder $query) use ($association) {
@@ -36,5 +43,18 @@ class AvailabilityQuery extends Builder
                 });
             });
         });
+    }
+
+    public function whereHasDate(Carbon $date): self
+    {
+        return $this->where(function (Builder $query) use ($date) {
+            $query->where('start_date', '<=', $date)
+                ->where('end_date', '>=', $date);
+        });
+    }
+
+    public function fromUser(User $user): self
+    {
+        return $this->where('user_id', $user->id);
     }
 }

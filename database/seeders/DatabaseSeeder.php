@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AttackTypeSeeder::class,
             UserSeeder::class,
-            BattleSeeder::class,
+            // BattleSeeder::class,
         ]);
     }
 }

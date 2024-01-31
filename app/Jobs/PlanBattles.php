@@ -35,7 +35,16 @@ class PlanBattles implements ShouldQueue
         $dates = $this->generateDates($user);
         $availability = Availability::getOverlappingWith($user, $dates);
 
-        return $this->createBattle($availability, $user, $dates);
+        $battle = $this->createBattle($availability, $user, $dates);
+
+        if ($battle) {
+            $requester_availability = Availability::getFromUserWithDate($user, $battle->date);
+
+            $requester_availability->removeDate($battle->date);
+            $availability->removeDate($battle->date);
+        }
+
+        return $battle;
     }
 
     private function generateDates(User $user): Collection
@@ -54,13 +63,19 @@ class PlanBattles implements ShouldQueue
             return null;
         }
 
+        $date = $availability->getOverlappingDate($dates);
+
+        if (! $date) {
+            return null;
+        }
+
         $userIds = [$user->id, $availability->user_id];
         [$hero_id, $monster_id] = $user->association === Association::Hero ? $userIds : array_reverse($userIds);
 
         return Battle::create([
             'hero_id' => $hero_id,
             'monster_id' => $monster_id,
-            'date' => $availability->getOverlappingDate($dates)
+            'date' => $date,
         ]);
     }
 }
