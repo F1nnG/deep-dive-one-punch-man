@@ -42,8 +42,8 @@ class UserSeeder extends Seeder
                 Availability::factory(1)->make()
             );
 
-            $user->apiKeys()->saveMany(
-                ApiKey::factory(2)->make()
+            $user->apiKey()->save(
+                ApiKey::factory()->make()
             );
         });
     }

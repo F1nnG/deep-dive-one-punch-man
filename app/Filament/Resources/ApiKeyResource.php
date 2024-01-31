@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ApiKeyResource\Pages\CreateApiKey;
 use App\Filament\Resources\ApiKeyResource\Pages\ListApiKeys;
 use App\Models\ApiKey;
 use Filament\Resources\Resource;
@@ -69,7 +68,6 @@ class ApiKeyResource extends Resource
     {
         return [
             'index' => ListApiKeys::route('/'),
-            'create' => CreateApiKey::route('/create'),
         ];
     }
 }

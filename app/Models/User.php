@@ -36,6 +36,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Statistic $statistic
  * @property Collection|BattleRequest[] $battle_requests
  * @property Collection|Availability[] $availabilities
+ * @property ApiKey $api_key
  */
 class User extends Authenticatable implements FilamentUser, HasName
 {
@@ -86,9 +87,9 @@ class User extends Authenticatable implements FilamentUser, HasName
         return $this->hasMany(Availability::class);
     }
 
-    public function apiKeys(): HasMany
+    public function apiKey(): HasOne
     {
-        return $this->hasMany(ApiKey::class);
+        return $this->hasOne(ApiKey::class);
     }
 
     public function canAccessPanel(Panel $panel): bool
