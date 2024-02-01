@@ -36,7 +36,7 @@ class UserFactory extends Factory
 
         return $this->state([
             'legal_name' => 'Hero Hero',
-            'alias' => 'Hero',
+            'alias' => 'Hero Admin',
             'email' => 'hero@hero.com',
             'password' => 'hero',
             'association' => Association::Hero,
@@ -52,7 +52,7 @@ class UserFactory extends Factory
 
         return $this->state([
             'legal_name' => 'Monster Monster',
-            'alias' => 'Monster',
+            'alias' => 'Monster Admin',
             'email' => 'monster@monster.com',
             'password' => 'monster',
             'association' => Association::Monster,

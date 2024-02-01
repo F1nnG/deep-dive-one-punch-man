@@ -13,7 +13,7 @@ return new class extends Migration {
     {
         Schema::create('battle_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

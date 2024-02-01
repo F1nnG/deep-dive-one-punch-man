@@ -13,7 +13,7 @@ class BattleFactory extends Factory
         return [
             'hero_id' => User::inRandomOrder()->where('association', Association::Hero)->first()->id,
             'monster_id' => User::inRandomOrder()->where('association', Association::Monster)->first()->id,
-            'date' => $this->faker->dateTimeBetween('now', '+1 month'),
+            'date' => $this->faker->dateTimeBetween('-1 month', '1 month'),
         ];
     }
 }

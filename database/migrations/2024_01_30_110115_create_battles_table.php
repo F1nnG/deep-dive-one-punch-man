@@ -13,9 +13,9 @@ return new class extends Migration {
     {
         Schema::create('battles', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class, 'hero_id')->constrained('users');
-            $table->foreignIdFor(User::class, 'monster_id')->constrained('users');
-            $table->foreignIdFor(User::class, 'winner_id')->nullable()->constrained('users');
+            $table->foreignIdFor(User::class, 'hero_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignIdFor(User::class, 'monster_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignIdFor(User::class, 'winner_id')->nullable()->constrained('users')->nullOnDelete();
             $table->date('date');
             $table->dateTime('finished_at')->nullable();
             $table->json('logs')->nullable();

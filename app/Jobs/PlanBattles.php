@@ -21,23 +21,24 @@ class PlanBattles implements ShouldQueue
 
     public function handle(): void
     {
-        foreach (BattleRequest::all() as $battle_request) {
-            if (! BattleRequest::query()->where('id', $battle_request->id)->exists()) {
+        BattleRequest::inRandomOrder()->each(function (BattleRequest $battle_request) {
+            if (! BattleRequest::where('id', $battle_request->id)->exists()) {
                 return;
             }
 
             $battle = $this->planBattleFor($battle_request->user);
 
-            if ($battle) {
-                $battle_request->delete();
-
-                if ($battle_request->user->id === $battle->hero->id) {
-                    $battle->monster->battleRequests()->first()->delete();
-                } else {
-                    $battle->hero->battleRequests()->first()->delete();
-                }
+            if (! $battle) {
+                return;
             }
-        }
+            $battle_request->delete();
+
+            if ($battle_request->user->id === $battle->hero->id) {
+                $battle->monster->battleRequests()->first()->delete();
+            } else {
+                $battle->hero->battleRequests()->first()->delete();
+            }
+        });
     }
 
     private function planBattleFor(User $user): ?Battle

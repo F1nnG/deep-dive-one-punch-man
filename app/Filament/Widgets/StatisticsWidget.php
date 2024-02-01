@@ -17,6 +17,7 @@ class StatisticsWidget extends TableWidget
     public function table(Table $table): Table
     {
         return $table
+            ->poll('1s')
             ->heading('')
             ->defaultSort('elo', 'desc')
             ->query(
