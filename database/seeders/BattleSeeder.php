@@ -7,9 +7,6 @@ use Illuminate\Database\Seeder;
 
 class BattleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         Battle::factory(30)->create();

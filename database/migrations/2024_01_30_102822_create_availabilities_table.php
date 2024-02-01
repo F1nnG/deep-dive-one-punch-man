@@ -13,7 +13,7 @@ return new class extends Migration {
     {
         Schema::create('availabilities', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();

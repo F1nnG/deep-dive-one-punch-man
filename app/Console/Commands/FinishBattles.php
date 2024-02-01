@@ -11,7 +11,7 @@ class FinishBattles extends Command
 
     protected $description = 'Finish all battles that have been completed';
 
-    public function handle()
+    public function handle(): void
     {
         FinishBattlesJob::dispatch();
     }

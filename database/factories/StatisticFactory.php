@@ -12,10 +12,20 @@ class StatisticFactory extends Factory
     public function definition(): array
     {
         return [
-            'elo' => fake()->numberBetween(1000, 2500),
+            'elo' => fake()->numberBetween(1000, 1400),
             'wins' => fake()->numberBetween(5, 25),
             'losses' => fake()->numberBetween(5, 25),
             'draws' => fake()->numberBetween(5, 25),
         ];
+    }
+
+    public function cleanStats(): self
+    {
+        return $this->state([
+            'elo' => 1200,
+            'wins' => 0,
+            'losses' => 0,
+            'draws' => 0,
+        ]);
     }
 }
