@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AvailabilityController;
 use App\Http\Controllers\Api\BattleController;
 use App\Http\Controllers\Api\BattleRequestController;
 use App\Http\Controllers\Api\StatisticsController;
@@ -11,6 +12,11 @@ Route::get('/user/{user}', [UserController::class, 'show'])
 
 Route::get('/request-battle', [BattleRequestController::class, 'create'])
     ->name('battle-request.create');
+
+Route::get('/availabilities', [AvailabilityController::class, 'index'])
+    ->name('availability.index');
+Route::get('/availability/add', [AvailabilityController::class, 'create'])
+    ->name('availability.create');
 
 Route::get('/leaderboard', [StatisticsController::class, 'index'])
     ->name('statistics.index');

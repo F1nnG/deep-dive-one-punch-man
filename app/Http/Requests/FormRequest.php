@@ -12,6 +12,6 @@ class FormRequest extends \Illuminate\Foundation\Http\FormRequest
      */
     protected function failedValidation(Validator $validator)
     {
-        throw new Exception($validator->errors());
+        throw new Exception(implode(', ', $validator->errors()->all()) . '.', 400);
     }
 }

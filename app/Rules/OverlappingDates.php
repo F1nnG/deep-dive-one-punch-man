@@ -15,8 +15,11 @@ class OverlappingDates implements DataAwareRule, ValidationRule
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $datesByUser = Auth::user()
-            ->availabilities
+        $availabilities = Auth::check()
+            ? Auth::user()->availabilities
+            : $this->data['apiKeyUser']->availabilities;
+
+        $datesByUser = $availabilities
             ->except($this->data['id'] ?? null)
             ->map(fn (Availability $availability) => $availability->period);
 
@@ -39,7 +42,11 @@ class OverlappingDates implements DataAwareRule, ValidationRule
 
     public function setData(array $data): static
     {
-        $this->data = $data['data'];
+        if (array_key_exists('data', $data)) {
+            $this->data = $data['data'];
+        } else {
+            $this->data = $data;
+        }
 
         return $this;
     }
