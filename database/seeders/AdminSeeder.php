@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ApiKey;
 use App\Models\AttackType;
 use App\Models\Power;
 use App\Models\Statistic;
@@ -23,6 +24,9 @@ class AdminSeeder extends Seeder
                     ])->each(function (Power $power) {
                         $power->attack_type_id = AttackType::inRandomOrder()->first()->id;
                     }),
+                );
+                $user->apiKey()->save(
+                    ApiKey::factory()->make(['is_accepted' => true,]),
                 );
             });
     }

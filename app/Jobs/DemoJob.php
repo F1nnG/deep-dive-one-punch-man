@@ -29,13 +29,9 @@ class DemoJob
     private function runDemo(): void
     {
         User::all()->each(function (User $user) {
-            if ($user->availabilities()->count() > 0) {
-                return;
-            }
-
             $user->availabilities()->save(
                 Availability::factory()->make([
-                    'start_date' => now()->subDays(10),
+                    'start_date' => now()->subDay(),
                     'end_date' => now()->subDay(),
                 ])
             );

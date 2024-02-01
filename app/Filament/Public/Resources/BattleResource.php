@@ -46,6 +46,8 @@ class BattleResource extends Resource
     {
         return $table
             ->recordUrl(null)
+            ->poll('5s')
+            ->defaultSort('finished_at', 'desc')
             ->columns([
                 TextColumn::make('hero.alias')
                     ->sortable()

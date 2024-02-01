@@ -61,7 +61,7 @@ class Battle extends Model
         return $this->belongsTo(User::class, 'winner_id');
     }
 
-    public function iFinished(): Attribute
+    public function isFinished(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->finished_at !== null,
