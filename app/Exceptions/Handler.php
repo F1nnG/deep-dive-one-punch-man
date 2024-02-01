@@ -34,9 +34,17 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e): Response|JsonResponse|ResponseFoundation|RedirectResponse
     {
-        return response()->json([
-            'status' => $e->getCode() ?: 500,
-            'message' => $e->getMessage(),
-        ], $e->getCode() ?: 500);
+        $middlewares = $request->route()?->middleware();
+
+        if ($middlewares) {
+            if (in_array('api', $middlewares)) {
+                return response()->json([
+                    'status' => $e->getCode() ?: 500,
+                    'message' => $e->getMessage(),
+                ], $e->getCode() ?: 500);
+            }
+        }
+
+        return parent::render($request, $e);
     }
 }
