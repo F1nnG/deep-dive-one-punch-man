@@ -23,6 +23,8 @@ class ApiKey
             throw new Exception('Invalid API key', 403);
         }
 
+        $request->merge(['apiKeyUser' => ApiKeyModel::where('key', $request->api_key)->first()->user]);
+
         return $next($request);
     }
 }
