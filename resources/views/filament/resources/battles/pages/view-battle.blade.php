@@ -9,14 +9,13 @@
         <x-filament-panels::resources.relation-managers :active-manager="$this->activeRelationManager" :managers="$relationManagers" :owner-record="$record" :page-class="static::class" />
     @endif
 
-    @php(/** @var \App\Models\Battle $record */$record)
+    @php
+        /** @var \App\Models\Battle $record */
+    @endphp
     @foreach ($record->logs as $roundNumber => $round)
         @php
-            $newHeroHp = round($round['hero_health']);
-            $newHeroHp = $newHeroHp < 0 ? 0 : $newHeroHp;
-
-            $newMonsterHp = round($round['monster_health']);
-            $newMonsterHp = $newMonsterHp < 0 ? 0 : $newMonsterHp;
+            $newHeroHp = max(0, round($round['hero_health']));
+            $newMonsterHp = max(0, round($round['monster_health']));
         @endphp
         <div class="mx-auto w-full max-w-[50rem] divide-y divide-gray-200 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-950/5 dark:divide-white/10 dark:bg-gray-900 dark:ring-white/10">
             <div class="p-4">

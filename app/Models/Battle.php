@@ -25,7 +25,7 @@ use Illuminate\Support\Carbon;
  * @property User $winner
  *
  * @property-read bool $finished
- * @property-read null|User $loser
+ * @property-read User|null $loser
  */
 class Battle extends Model
 {
@@ -73,10 +73,11 @@ class Battle extends Model
         return Attribute::make(
             get: function () {
                 if ($this->finished) {
-                    return $this->winner_id === $this->hero_id
-                        ? $this->monster
-                        : $this->hero;
+                    return $this->winner_id !== $this->hero_id
+                        ? $this->hero
+                        : $this->monster;
                 }
+
                 return null;
             }
         );
