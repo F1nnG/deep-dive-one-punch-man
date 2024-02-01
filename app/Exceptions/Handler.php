@@ -3,6 +3,10 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as ResponseFoundation;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -28,7 +32,7 @@ class Handler extends ExceptionHandler
         });
     }
 
-    public function render($request, Throwable $e): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response|\Illuminate\Http\RedirectResponse
+    public function render($request, Throwable $e): Response|JsonResponse|ResponseFoundation|RedirectResponse
     {
         return response()->json([
             'status' => $e->getCode() ?: 500,

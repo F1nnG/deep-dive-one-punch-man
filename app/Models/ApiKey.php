@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Traits\IsApi;
+use App\Models\Traits\HasAcceptedApiCheck;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,7 +26,7 @@ class ApiKey extends Model
 {
     use HasFactory;
     use HasUuids;
-    use IsApi;
+    use HasAcceptedApiCheck;
 
     protected $primaryKey = 'key';
 

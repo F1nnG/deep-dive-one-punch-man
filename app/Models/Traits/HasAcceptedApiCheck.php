@@ -2,9 +2,9 @@
 
 namespace App\Models\Traits;
 
-trait IsApi
+trait HasAcceptedApiCheck
 {
-    public static function check(string $apiKey): bool
+    public static function check(?string $apiKey): bool
     {
         return static::where('key', $apiKey)
             ->where('is_accepted', true)
