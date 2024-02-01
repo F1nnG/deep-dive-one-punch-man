@@ -2,18 +2,20 @@
 
 namespace App\Filament\Public\Resources;
 
-use App\Filament\Public\Resources\BattleResource\Pages;
+use App\Filament\Public\Resources\BattleResource\Pages\ListBattles;
+use App\Filament\Public\Resources\BattleResource\Pages\ViewBattle;
 use App\Models\Battle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class BattleResource extends Resource
 {
     protected static ?string $model = Battle::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-trophy';
 
     public static function form(Form $form): Form
     {
@@ -27,25 +29,26 @@ class BattleResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('hero.name')
+                    ->sortable(),
+                TextColumn::make('monster.name')
+                    ->sortable(),
+                TextColumn::make('date')
+                    ->date('j F Y')
+                    ->sortable(),
+                TextColumn::make('winner.name')
+                    ->sortable(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                ViewAction::make(),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListBattles::route('/'),
-            'view' => Pages\ViewBattle::route('/{record}'),
+            'index' => ListBattles::route('/'),
+            'view' => ViewBattle::route('/{record}'),
         ];
     }
 }

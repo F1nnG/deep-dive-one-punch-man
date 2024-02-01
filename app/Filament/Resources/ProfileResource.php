@@ -29,7 +29,7 @@ class ProfileResource extends Resource
     {
         return [
             'index' => ListProfiles::route('/'),
-            'edit' => EditProfile::route('/edit/{record}'),
+            'edit' => EditProfile::route('/{record}'),
         ];
     }
 }

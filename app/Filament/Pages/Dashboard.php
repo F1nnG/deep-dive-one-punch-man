@@ -10,5 +10,10 @@ class Dashboard extends BaseDashboard
 
     protected static ?string $title = 'Leaderboard';
 
-    protected static ?string $navigationIcon = 'heroicon-o-trophy';
+    protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
+
+    public static function getNavigationUrl(): string
+    {
+        return '/';
+    }
 }

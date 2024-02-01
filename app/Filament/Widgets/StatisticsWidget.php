@@ -29,7 +29,7 @@ class StatisticsWidget extends TableWidget
                 TextColumn::make('user.alias')
                     ->searchable(),
                 TextColumn::make('elo')
-                    ->icon(fn (Statistic $statistic) => $statistic->rating->icon())
+                    ->icon('heroicon-o-star')
                     ->iconColor(fn (Statistic $statistic) => $statistic->rating->color())
                     ->tooltip(fn (Statistic $statistic) => 'Class ' . $statistic->rating->value)
                     ->alignCenter()

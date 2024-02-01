@@ -9,6 +9,7 @@
         <x-filament-panels::resources.relation-managers :active-manager="$this->activeRelationManager" :managers="$relationManagers" :owner-record="$record" :page-class="static::class" />
     @endif
 
+    @php(/** @var \App\Models\Battle $record */$record)
     @foreach ($record->logs as $roundNumber => $round)
         @php
             $newHeroHp = round($round['hero_health']);
