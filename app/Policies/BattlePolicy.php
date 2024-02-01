@@ -7,27 +7,27 @@ use App\Models\User;
 
 class BattlePolicy
 {
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
         return true;
     }
 
-    public function view(User $user, Battle $battle): bool
+    public function view(?User $user, Battle $battle): bool
     {
         return $battle->finished;
     }
 
-    public function create(User $user): bool
+    public function create(?User $user): bool
     {
         return false;
     }
 
-    public function update(User $user, Battle $battle): bool
+    public function update(?User $user, Battle $battle): bool
     {
         return false;
     }
 
-    public function delete(User $user, Battle $battle): bool
+    public function delete(?User $user, Battle $battle): bool
     {
         return false;
     }
