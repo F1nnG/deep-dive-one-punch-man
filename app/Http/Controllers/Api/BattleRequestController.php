@@ -15,6 +15,6 @@ class BattleRequestController extends Controller
 
         return response()->json([
             'message' => 'Battle request created successfully',
-        ]);
+        ], 200);
     }
 }

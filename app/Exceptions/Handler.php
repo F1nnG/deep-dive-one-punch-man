@@ -27,4 +27,12 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $e): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response|\Illuminate\Http\RedirectResponse
+    {
+        return response()->json([
+            'status' => $e->getCode() ?: 500,
+            'message' => $e->getMessage(),
+        ], $e->getCode() ?: 500);
+    }
 }

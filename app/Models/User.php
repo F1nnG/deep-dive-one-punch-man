@@ -38,6 +38,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Collection|BattleRequest[] $battle_requests
  * @property Collection|Availability[] $availabilities
  * @property ApiKey $api_key
+ * @property Collection|Battle[] $battles
  */
 class User extends Authenticatable implements FilamentUser, HasName
 {
@@ -92,6 +93,12 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function apiKey(): HasOne
     {
         return $this->hasOne(ApiKey::class);
+    }
+
+    public function battles(): HasMany
+    {
+        return $this->hasMany(Battle::class, 'hero_id')
+            ->orWhere('monster_id', $this->id);
     }
 
     public function canAccessPanel(Panel $panel): bool
