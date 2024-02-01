@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user/{user}', [UserController::class, 'show'])
     ->name('users.show');
 
-Route::get('/request-battle', [BattleRequestController::class, 'create'])
+Route::post('/request-battle', [BattleRequestController::class, 'create'])
     ->name('battle-request.create');
 
 Route::get('/availabilities', [AvailabilityController::class, 'index'])
     ->name('availability.index');
-Route::get('/availability/add', [AvailabilityController::class, 'create'])
+Route::post('/availability/add', [AvailabilityController::class, 'create'])
     ->name('availability.create');
 
 Route::get('/leaderboard', [StatisticsController::class, 'index'])
