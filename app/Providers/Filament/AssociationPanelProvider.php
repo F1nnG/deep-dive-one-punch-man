@@ -27,6 +27,7 @@ class AssociationPanelProvider extends PanelProvider
         return $panel
             ->id('association')
             ->path('association')
+            ->viteTheme('resources/css/filament/association/theme.css')
             ->login()
             ->registration(Register::class)
             ->colors([
