@@ -3,6 +3,8 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Register;
+use App\Filament\Pages\Dashboard;
+use App\Filament\Public\Resources\BattleResource\Pages\ListBattles;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -34,8 +36,11 @@ class AssociationPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->navigationItems([
                 NavigationItem::make('Leaderboard')
+                    ->icon('heroicon-o-chart-bar')
+                    ->url(Dashboard::getNavigationUrl()),
+                NavigationItem::make('Battles')
                     ->icon('heroicon-o-trophy')
-                    ->url('/'),
+                    ->url(ListBattles::getNavigationUrl()),
             ])
             ->middleware([
                 EncryptCookies::class,

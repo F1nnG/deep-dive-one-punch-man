@@ -25,6 +25,7 @@ class PublicPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->viteTheme('resources/css/filament/public/theme.css')
             ->id('public')
             ->path('')
             ->colors([

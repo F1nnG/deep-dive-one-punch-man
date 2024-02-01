@@ -30,9 +30,11 @@ class UserSeeder extends Seeder
                 })
             );
 
-            $user->statistic()->save(
-                Statistic::factory()->make()
-            );
+            if (! $user->statistic()->exists()) {
+                $user->statistic()->save(
+                    Statistic::factory()->make()
+                );
+            }
 
             $user->battleRequests()->saveMany(
                 BattleRequest::factory(3)->make()
@@ -41,10 +43,11 @@ class UserSeeder extends Seeder
             $user->availabilities()->saveMany(
                 Availability::factory(1)->make()
             );
-
-            $user->apiKey()->save(
-                ApiKey::factory()->make()
-            );
+            if (! $user->apiKey()->exists()) {
+                $user->apiKey()->save(
+                    ApiKey::factory()->make()
+                );
+            }
         });
     }
 }

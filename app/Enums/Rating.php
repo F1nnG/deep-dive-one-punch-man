@@ -34,14 +34,6 @@ enum Rating: string
         };
     }
 
-    public function icon(): string
-    {
-        return match ($this) {
-            self::A, self::C, self::B => 'heroicon-o-star',
-            self::S => 'heroicon-o-trophy',
-        };
-    }
-
     public function color(): array
     {
         return match ($this) {
