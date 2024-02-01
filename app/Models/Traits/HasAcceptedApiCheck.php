@@ -6,7 +6,7 @@ trait HasAcceptedApiCheck
 {
     public static function check(?string $apiKey): bool
     {
-        return static::where('key', $apiKey)
+        return static::whereKey($apiKey)
             ->where('is_accepted', true)
             ->exists();
     }
