@@ -65,6 +65,11 @@ class PublicPanelProvider extends PanelProvider
                 ->visible(fn () => Auth::check())
                 ->icon('heroicon-o-calendar')
                 ->url(fn () => route('filament.association.resources.availabilities.index')),
+            NavigationItem::make('Documentation')
+                ->group('API')
+                ->visible(fn () => Auth::check())
+                ->icon('heroicon-o-link')
+                ->url(fn () => route('filament.association.pages.api-documentation')),
             NavigationItem::make('Attack Types')
                 ->group('Admin')
                 ->visible(fn () => Auth::check() && Auth::user()->is_admin)
