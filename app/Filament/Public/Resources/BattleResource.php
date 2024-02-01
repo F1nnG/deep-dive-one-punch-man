@@ -12,9 +12,10 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class BattleResource extends Resource
 {
@@ -56,9 +57,10 @@ class BattleResource extends Resource
                     ->label('Planned at')
                     ->date('j F Y')
                     ->sortable(),
-                IconColumn::make('finished')
+                TextColumn::make('finished_at')
                     ->label('Finished')
-                    ->boolean()
+                    ->date('H:i:s | j F Y')
+                    ->placeholder('TBD')
                     ->sortable(),
                 TextColumn::make('winner.alias')
                     ->placeholder('TBD')
@@ -66,7 +68,24 @@ class BattleResource extends Resource
             ])
             ->actions([
                 ViewAction::make()
-                    ->visible(fn (Battle $battle) => $battle->finished),
+                    ->visible(fn (Battle $battle) => $battle->is_finished),
+            ])
+            ->filters([
+                Filter::make('finished_at')
+                    ->form([
+                        DatePicker::make('finished_at')
+                            ->label('Finished after'),
+                        DatePicker::make('finished_at')
+                            ->label('Finished before'),
+                    ])
+                    ->query(function (Builder $query, $data) {
+                        if (isset($data['finished_at'])) {
+                            $query->whereDate('finished_at', '>=', $data['finished_at']);
+                        }
+                        if (isset($data['finished_at'])) {
+                            $query->whereDate('finished_at', '<=', $data['finished_at']);
+                        }
+                    }),
             ]);
     }
 

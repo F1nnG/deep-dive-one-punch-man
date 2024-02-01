@@ -12,9 +12,9 @@ use Illuminate\Support\Carbon;
  * @property int $id
  * @property int hero_id
  * @property int monster_id
+ * @property int $winner_id
  * @property Carbon $date
  * @property Carbon $finished_at
- * @property int $winner_id
  * @property array $logs
  *
  * @property Carbon $created_at
@@ -24,7 +24,7 @@ use Illuminate\Support\Carbon;
  * @property User $monster
  * @property User $winner
  *
- * @property-read bool $finished
+ * @property-read bool $is_finished
  * @property-read User|null $loser
  */
 class Battle extends Model
@@ -34,9 +34,9 @@ class Battle extends Model
     protected $fillable = [
         'hero_id',
         'monster_id',
+        'winner_id',
         'date',
         'finished_at',
-        'winner_id',
         'logs',
     ];
 
@@ -61,7 +61,7 @@ class Battle extends Model
         return $this->belongsTo(User::class, 'winner_id');
     }
 
-    public function finished(): Attribute
+    public function iFinished(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->finished_at !== null,
@@ -72,7 +72,7 @@ class Battle extends Model
     {
         return Attribute::make(
             get: function () {
-                if ($this->finished) {
+                if ($this->is_finished) {
                     return $this->winner_id !== $this->hero_id
                         ? $this->hero
                         : $this->monster;

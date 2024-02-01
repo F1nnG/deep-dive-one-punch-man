@@ -14,7 +14,7 @@ class BattlePolicy
 
     public function view(?User $user, Battle $battle): bool
     {
-        return $battle->finished;
+        return $battle->is_finished;
     }
 
     public function create(?User $user): bool

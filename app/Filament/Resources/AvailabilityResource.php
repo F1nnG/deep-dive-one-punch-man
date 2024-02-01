@@ -9,6 +9,7 @@ use App\Models\Availability;
 use App\Queries\AvailabilityQuery;
 use App\Rules\OverlappingDates;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -36,6 +37,8 @@ class AvailabilityResource extends Resource
                     ->rules([new OverlappingDates()]),
                 DatePicker::make('end_date')
                     ->rules([new OverlappingDates()]),
+                Hidden::make('user_id')
+                    ->default(Auth::user()->id),
             ]);
     }
 
@@ -53,9 +56,6 @@ class AvailabilityResource extends Resource
                 TextColumn::make('end_date')
                     ->date('d-m-Y')
                     ->sortable(),
-            ])
-            ->filters([
-                //
             ])
             ->actions([
                 EditAction::make(),

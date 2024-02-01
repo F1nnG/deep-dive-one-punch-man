@@ -163,7 +163,7 @@ class EditProfile extends EditRecord
                 ->action(function (Action $action) {
                     $user = Auth::user();
                     if (! $user->apiKey()->exists()) {
-                        $user->apiKey()->save(ApiKey::factory()->make());
+                        $user->apiKey()->save(ApiKey::factory()->make(['is_accepted' => false]));
                     }
 
                     $action->redirect(EditProfile::getUrl(['record' => $user]));

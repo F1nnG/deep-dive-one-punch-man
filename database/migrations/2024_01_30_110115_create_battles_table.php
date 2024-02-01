@@ -15,9 +15,9 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(User::class, 'hero_id')->constrained('users');
             $table->foreignIdFor(User::class, 'monster_id')->constrained('users');
+            $table->foreignIdFor(User::class, 'winner_id')->nullable()->constrained('users');
             $table->date('date');
             $table->dateTime('finished_at')->nullable();
-            $table->foreignIdFor(User::class, 'winner_id')->nullable()->constrained('users');
             $table->json('logs')->nullable();
             $table->timestamps();
         });

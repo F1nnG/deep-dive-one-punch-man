@@ -39,10 +39,10 @@ class AttackTypeResource extends Resource
                 Fieldset::make('Effects')
                     ->schema([
                         Select::make('effective_against')
-                            ->options(fn (AttackType $record) => AttackType::whereNot('id', $record->id)->pluck('name', 'id')->toArray())
+                            ->options(fn (AttackType $attackType) => AttackType::whereNot('id', $attackType->id)->pluck('name', 'id')->toArray())
                             ->required(),
                         Select::make('weak_against')
-                            ->options(fn (AttackType $record) => AttackType::whereNot('id', $record->id)->pluck('name', 'id')->toArray())
+                            ->options(fn (AttackType $attackType) => AttackType::whereNot('id', $attackType->id)->pluck('name', 'id')->toArray())
                             ->required(),
                     ]),
                 TextInput::make('name')
