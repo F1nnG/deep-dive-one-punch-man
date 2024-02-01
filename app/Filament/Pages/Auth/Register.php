@@ -56,7 +56,12 @@ class Register extends BaseRegister
                                 ->required()
                                 ->autosize()
                                 ->rules([new WordCount()])
-                                ->placeholder('Tell us about yourself...'),
+                                ->placeholder('Tell us about yourself and how you came to be...'),
+                            Textarea::make('motivation')
+                                ->required()
+                                ->autosize()
+                                ->rules([new WordCount()])
+                                ->placeholder('Tell us why you want to join...'),
                         ]),
                     Step::make('Powers')
                         ->icon('heroicon-o-bolt')
