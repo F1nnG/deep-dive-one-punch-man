@@ -14,9 +14,6 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory()->asHero()->create();
-        User::factory()->asMonster()->create();
-
         User::factory(10)->create();
 
         $users = User::all();
@@ -32,7 +29,9 @@ class UserSeeder extends Seeder
 
             if (! $user->statistic()->exists()) {
                 $user->statistic()->save(
-                    Statistic::factory()->make()
+                    $user->is_admin
+                        ? Statistic::factory()->cleanStats()->make()
+                        : Statistic::factory()->make()
                 );
             }
 

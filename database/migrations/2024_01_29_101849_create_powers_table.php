@@ -14,8 +14,8 @@ return new class extends Migration {
     {
         Schema::create('powers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(AttackType::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(AttackType::class)->constrained()->cascadeOnDelete();
             $table->integer('grade');
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ return new class extends Migration {
     {
         Schema::create('api_keys', function (Blueprint $table) {
             $table->uuid('key')->primary();
-            $table->foreignIdFor(User::class)->unique()->constrained();
+            $table->foreignIdFor(User::class)->unique()->constrained()->cascadeOnDelete();
             $table->boolean('is_accepted')->default(false);
             $table->timestamps();
         });

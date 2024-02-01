@@ -13,7 +13,7 @@ return new class extends Migration {
     {
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->unique()->constrained();
+            $table->foreignIdFor(User::class)->unique()->constrained()->cascadeOnDelete();
             $table->integer('elo');
             $table->integer('wins');
             $table->integer('losses');
