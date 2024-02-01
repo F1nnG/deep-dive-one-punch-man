@@ -25,8 +25,10 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $password
  * @property Carbon $date_of_birth
  * @property string $backstory
+ * @property string $motivation
  * @property Carbon $email_verified_at
  * @property string $remember_token
+ * @property bool $is_admin
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -35,6 +37,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Statistic $statistic
  * @property Collection|BattleRequest[] $battle_requests
  * @property Collection|Availability[] $availabilities
+ * @property ApiKey $api_key
  */
 class User extends Authenticatable implements FilamentUser, HasName
 {
@@ -51,6 +54,8 @@ class User extends Authenticatable implements FilamentUser, HasName
         'password',
         'date_of_birth',
         'backstory',
+        'motivation',
+        'is_admin',
     ];
 
     protected $hidden = [
@@ -82,6 +87,11 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function availabilities(): HasMany
     {
         return $this->hasMany(Availability::class);
+    }
+
+    public function apiKey(): HasOne
+    {
+        return $this->hasOne(ApiKey::class);
     }
 
     public function canAccessPanel(Panel $panel): bool

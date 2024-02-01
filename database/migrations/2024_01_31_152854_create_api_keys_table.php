@@ -11,13 +11,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('statistics', function (Blueprint $table) {
-            $table->id();
+        Schema::create('api_keys', function (Blueprint $table) {
+            $table->uuid('key')->primary();
             $table->foreignIdFor(User::class)->unique()->constrained();
-            $table->integer('elo');
-            $table->integer('wins');
-            $table->integer('losses');
-            $table->integer('draws');
+            $table->boolean('is_accepted')->default(false);
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('statistics');
+        Schema::dropIfExists('api_keys');
     }
 };

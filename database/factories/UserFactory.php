@@ -22,6 +22,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'date_of_birth' => fake()->date(),
             'backstory' => fake()->paragraph(),
+            'motivation' => fake()->paragraph(),
             'email_verified_at' => now(),
             'remember_token' => fake()->randomNumber(),
         ];
@@ -39,6 +40,7 @@ class UserFactory extends Factory
             'email' => 'hero@hero.com',
             'password' => 'hero',
             'association' => Association::Hero,
+            'is_admin' => true,
         ]);
     }
 
@@ -54,6 +56,7 @@ class UserFactory extends Factory
             'email' => 'monster@monster.com',
             'password' => 'monster',
             'association' => Association::Monster,
+            'is_admin' => true,
         ]);
     }
 }

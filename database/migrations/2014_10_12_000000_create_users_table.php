@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->string('password');
             $table->date('date_of_birth');
             $table->text('backstory')->nullable();
+            $table->text('motivation')->nullable();
+            $table->boolean('is_admin')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
