@@ -1,36 +1,32 @@
 # Deepdive - One Punch Man
 
-Welcome to the One Punch Man project, an innovative dashboard designed for the Hero Association of the
-iconic One Punch Man universe. This platform aims to revolutionize the way hero battles are viewed and simulated,
-providing a seamless and interactive experience for managing hero activities.
+This project was made in a Deep Dive for the Bit Academy,<br>
+finished in the span of four days, and presented on the fifth.
+
+For the project we have used Filament with custom pages, which uses the TALL stack.
 
 ## 🔧 Installation
 
-1. To start using this API you should clone the repo.
+1. Clone the repository
 
 ```bash
-git clone git@git.nexed.com:finngroenewoud/one-punch-man.git
+git clone git@github.com:ldideric/deep-dive-one-punch-man.git
 ```
 
-2. Run the composer install command.
+2. Run the composer and npm install commands.
 
 ```bash
 composer install
-```
-
-3. Run the npm install command.
-
-```bash
 npm install
 ```
 
-4. Run the npm install command.
+4. Run the npm build command to compile the views.
 
 ```bash
 npm run build
 ```
 
-5. Copy the .env.example to .env, and configure the .env file to your liking.
+5. Copy the .env.example to .env, and configure it to your liking.
 
 ```bash
 cp .env.example .env
