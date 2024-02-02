@@ -13,9 +13,9 @@ class BattleAlgorithm
 {
     public Battle $battle;
 
-    public User $winner;
+    public string|User $winner;
 
-    public User $loser;
+    public string|User $loser;
 
     public array $logs = [];
 
@@ -52,7 +52,10 @@ class BattleAlgorithm
             $round++;
         }
 
-        if ($this->heroHealth <= 0) {
+        if ($this->monsterHealth <= 0 && $this->heroHealth <= 0) {
+            $this->winner = 'draw';
+            $this->loser = 'draw';
+        } else if ($this->heroHealth <= 0) {
             $this->winner = $this->battle->monster;
             $this->loser = $this->battle->hero;
         } else {
@@ -113,25 +116,42 @@ class BattleAlgorithm
 
     private function updateBattle(): void
     {
-        $this->battle->update([
-            'finished_at' => now(),
-            'winner_id' => $this->winner->id,
-            'logs' => $this->logs,
-        ]);
+        if ($this->winner !== 'draw') {
+            $this->battle->update([
+                'finished_at' => now(),
+                'winner_id' => $this->winner->id,
+                'logs' => $this->logs,
+            ]);
+        } else {
+            $this->battle->update([
+                'finished_at' => now(),
+                'logs' => $this->logs,
+            ]);
+        }
     }
 
     private function updateStatistics(): void
     {
-        [$winnerElo, $loserElo] = EloCalculator::getRatings($this->winner->statistic->elo, $this->loser->statistic->elo);
+        if ($this->winner !== 'draw') {
+            [$winnerElo, $loserElo] = EloCalculator::getRatings($this->winner->statistic->elo, $this->loser->statistic->elo);
 
-        $this->winner->statistic->update([
-            'wins' => $this->winner->statistic->wins + 1,
-            'elo' => $winnerElo,
-        ]);
+            $this->winner->statistic->update([
+                'wins' => $this->winner->statistic->wins + 1,
+                'elo' => $winnerElo,
+            ]);
 
-        $this->loser->statistic->update([
-            'losses' => $this->loser->statistic->losses + 1,
-            'elo' => $loserElo,
-        ]);
+            $this->loser->statistic->update([
+                'losses' => $this->loser->statistic->losses + 1,
+                'elo' => $loserElo,
+            ]);
+        } else {
+            $this->battle->hero->statistic->update([
+                'draws' => $this->battle->hero->statistic->draws + 1,
+            ]);
+
+            $this->battle->monster->statistic->update([
+                'draws' => $this->battle->monster->statistic->draws + 1,
+            ]);
+        }
     }
 }

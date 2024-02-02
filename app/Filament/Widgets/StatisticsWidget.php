@@ -43,6 +43,10 @@ class StatisticsWidget extends TableWidget
                     ->toggleable()
                     ->alignCenter()
                     ->sortable(),
+                TextColumn::make('draws')
+                    ->toggleable()
+                    ->alignCenter()
+                    ->sortable(),
             ])
             ->filters([
                 SelectFilter::make('rating')

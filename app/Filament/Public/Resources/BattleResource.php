@@ -65,7 +65,7 @@ class BattleResource extends Resource
                     ->placeholder('TBD')
                     ->sortable(),
                 TextColumn::make('winner.alias')
-                    ->placeholder('TBD')
+                    ->placeholder(fn (Battle $battle) => $battle->is_finished && ! $battle->winner_id ? 'Draw' : 'TBD')
                     ->searchable(),
             ])
             ->actions([
