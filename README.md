@@ -58,6 +58,14 @@ If you want to run de demo for the Battle system you can run the following comma
 php artisan demo:start
 ```
 
+## 🐞️ Testing
+
+To run the tests, run the following command:
+
+```bash
+php artisan dusk
+```
+
 ## 🔗 Credits
 
 Made by: <br>
