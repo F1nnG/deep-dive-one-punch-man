@@ -31,7 +31,10 @@ class UserFactory extends Factory
     public function asHero(): self
     {
         if (User::whereEmail('hero@hero.com')->exists()) {
-            return $this;
+            return $this->state([
+                'association' => Association::Hero,
+                'is_admin' => true,
+            ]);
         }
 
         return $this->state([
